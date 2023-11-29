@@ -82,7 +82,6 @@ export default function Signin() {
             {...form.getInputProps("password")}
             placeholder="Your password"
             label="Password"
-            required={false}
             mt={"md"}
           />
           <Button fullWidth mt="xl" type="submit">
