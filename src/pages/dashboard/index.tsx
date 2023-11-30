@@ -12,6 +12,7 @@ import {
   Textarea,
   Text,
   Input,
+  Skeleton,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDebouncedState, useDisclosure } from "@mantine/hooks";
@@ -48,7 +49,12 @@ const index = ({}: Props) => {
   });
 
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Skeleton h={400} />
+      </div>
+    );
 
   const AddQuiz = () => {
     let config = {

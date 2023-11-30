@@ -12,6 +12,7 @@ import {
   Grid,
   Modal,
   Paper,
+  Skeleton,
   Text,
   Textarea,
 } from "@mantine/core";
@@ -45,7 +46,12 @@ const index = (props: Props) => {
     },
   });
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Skeleton h={400} />
+      </div>
+    );
 
   let token = getCookie("token");
   const AddQuestion = () => {
