@@ -46,7 +46,7 @@ export default function App({ Component, pageProps }: AppPropsWithLayout) {
     <>
       <Head>
         <title>Quiz App</title>
-        <meta name="description" content="" />
+        <meta name="description" content="Quiz App" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
