@@ -14,6 +14,7 @@ import {
 import { IconHome2, IconList, IconPencil } from "@tabler/icons-react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 const urldata = [
   { name: "Quiz", url: "/dashboard", icon: <IconList size={"18px"} /> },
@@ -23,6 +24,7 @@ export default function DashboardLayout({ children }: any) {
   const [opened, { toggle }] = useDisclosure();
 
   const router = useRouter();
+  useEffect(() => {}, []);
 
   return (
     <AppShell
@@ -65,3 +67,5 @@ export default function DashboardLayout({ children }: any) {
     </AppShell>
   );
 }
+
+

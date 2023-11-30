@@ -112,8 +112,6 @@ const index = (props: Props) => {
           </Button>
         </form>
       </Modal>
-
-     
     </div>
   );
 };
@@ -123,3 +121,19 @@ index.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default index;
+
+export const getServerSideProps = ({ req, res }: any) => {
+  let user = getCookie("user", { req, res });
+  let token = getCookie("token", { req, res });
+
+  if (!user || !token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/auth/signin",
+      },
+      props: {},
+    };
+  }
+  return { props: {} };
+};

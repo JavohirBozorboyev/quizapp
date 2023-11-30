@@ -23,10 +23,14 @@ import React, { ReactElement, useContext, useRef, useState } from "react";
 import useSWR from "swr";
 import { UserContext } from "../_app";
 import { parseJson } from "@/utils/parseJson";
+import { request } from "http";
+import { NextResponse } from "next/server";
 
 type Props = {};
 
-const index = (props: Props) => {
+const index = ({}: Props) => {
+  // console.log(a);
+
   const [opened, { open, close }] = useDisclosure(false);
   const [serach, setSearch] = useDebouncedState("", 200);
   let token = getCookie("token");
@@ -42,7 +46,6 @@ const index = (props: Props) => {
         value.length < 10 ? "Description must have at least 10 letters" : null,
     },
   });
-
 
   if (error) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
@@ -147,3 +150,19 @@ index.getLayout = function getLayout(page: ReactElement) {
 };
 
 export default index;
+
+export const getServerSideProps = ({ req, res }: any) => {
+  let user = getCookie("user", { req, res });
+  let token = getCookie("token", { req, res });
+
+  if (!user || !token) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/auth/signin",
+      },
+      props: {},
+    };
+  }
+  return { props: {} };
+};

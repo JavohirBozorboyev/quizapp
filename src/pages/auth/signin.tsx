@@ -52,6 +52,7 @@ export default function Signin() {
             loading: false,
           });
           router.push("/dashboard");
+          // router.reload();
         }
       })
       .catch(function (error) {
