@@ -22,6 +22,7 @@ const DashbaordQuizCard = ({ data }: Props) => {
   const router = useRouter();
   const [opened, { open, close }] = useDisclosure(false);
   let token = getCookie("token");
+  let UserId = getCookie("UserId");
   const Delete = (id: number) => {
     let config = {
       headers: {
@@ -68,7 +69,7 @@ const DashbaordQuizCard = ({ data }: Props) => {
           <ActionIcon variant="light" color="red" size={"lg"} onClick={open}>
             <IconTrash size={"18px"} />
           </ActionIcon>
-          <CopyButton value={`${origin}/quiz/&${token}&${data.id}`}>
+          <CopyButton value={`${origin}/quiz/&${UserId}&${token}&${data.id}`}>
             {({ copied, copy }) => (
               <Button color={copied ? "teal" : "blue"} onClick={copy}>
                 {copied ? "Copied url" : "Copy url"}
@@ -81,6 +82,11 @@ const DashbaordQuizCard = ({ data }: Props) => {
             </Button>
           </Link>
         </Group>
+        <Link href={`${origin}/quiz/&${UserId}&${token}&${data.id}`}>
+          <Button fullWidth color="teal" mt={"md"}>
+            Start Quiz
+          </Button>
+        </Link>
       </Card>
       <Modal opened={opened} onClose={close} title="Delete Quiz">
         <Text fw={500} size="lg">

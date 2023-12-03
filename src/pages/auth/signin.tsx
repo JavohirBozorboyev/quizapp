@@ -43,6 +43,7 @@ export default function Signin() {
         if (response.status == 200) {
           setCookie("user", JSON.stringify(response.data));
           setCookie("token", `${response.data.Token}`);
+          setCookie("UserId", `${response.data.UserId}`);
           setCookie("auth", `true`);
           notifications.show({
             withCloseButton: true,
